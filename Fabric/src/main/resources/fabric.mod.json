@@ -18,10 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.cerbon.ml_template.fabric.ModNameFabric"
+      "com.cerbon.adorable_eggs.fabric.AdorableEggsFabric"
     ],
     "client": [
-      "com.cerbon.ml_template.fabric.ModNameFabric"
+      "com.cerbon.adorable_eggs.fabric.AdorableEggsFabric"
     ]
   },
   "mixins": [
