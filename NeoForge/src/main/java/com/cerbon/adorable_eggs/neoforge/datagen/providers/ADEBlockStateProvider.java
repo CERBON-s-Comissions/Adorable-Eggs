@@ -9,9 +9,11 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ADEBlockStateProvider extends BlockStateProvider {
+    private final ExistingFileHelper exFileHelper;
 
     public ADEBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
         super(output, AdorableEggs.MOD_ID, exFileHelper);
+        this.exFileHelper = exFileHelper;
     }
 
     @Override
@@ -20,12 +22,6 @@ public class ADEBlockStateProvider extends BlockStateProvider {
     }
 
     private void eggBlock(Block eggBlock) {
-        this.simpleBlock(eggBlock, new ModelFile(this.blockTexture(eggBlock)) {
-
-            @Override
-            protected boolean exists() {
-                return true;
-            }
-        });
+        this.simpleBlock(eggBlock, new ModelFile.ExistingModelFile(this.blockTexture(eggBlock), this.exFileHelper));
     }
 }
