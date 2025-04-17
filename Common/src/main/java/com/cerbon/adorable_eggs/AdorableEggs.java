@@ -1,5 +1,6 @@
 package com.cerbon.adorable_eggs;
 
+import com.cerbon.adorable_eggs.block.ADEBlocks;
 import com.mojang.logging.LogUtils;
 import org.slf4j.Logger;
 
@@ -9,5 +10,7 @@ public class AdorableEggs {
 
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public static void init() {}
+	public static void init() {
+		ADEBlocks.register();
+	}
 }
