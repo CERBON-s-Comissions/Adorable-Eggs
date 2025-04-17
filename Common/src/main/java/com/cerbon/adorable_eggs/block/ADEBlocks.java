@@ -14,7 +14,7 @@ import net.minecraft.world.level.material.MapColor;
 public class ADEBlocks {
     public static final ResourcefulRegistry<Block> BLOCKS = ResourcefulRegistries.create(BuiltInRegistries.BLOCK, AdorableEggs.MOD_ID);
 
-    public static final RegistryEntry<Block> ALLEY_EGG = register("alley_egg", MapColor.COLOR_LIGHT_BLUE);
+    public static final RegistryEntry<Block> ALLAY_EGG = register("allay_egg", MapColor.COLOR_LIGHT_BLUE);
 
     private static RegistryEntry<Block> register(String id, MapColor mapColor) {
         return BLOCKS.register(id, () -> new EggBlock(BlockBehaviour.Properties.of().mapColor(mapColor).strength(0.5F).sound(SoundType.METAL).noOcclusion()));

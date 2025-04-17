@@ -19,7 +19,7 @@ public class ADEBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropOther(ADEBlocks.ALLEY_EGG.get(), Items.ALLAY_SPAWN_EGG);
+        this.dropOther(ADEBlocks.ALLAY_EGG.get(), Items.ALLAY_SPAWN_EGG);
     }
 
     @Override
