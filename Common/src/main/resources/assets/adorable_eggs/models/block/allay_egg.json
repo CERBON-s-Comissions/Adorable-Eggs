@@ -6,6 +6,7 @@
 		"2": "adorable_eggs:block/allay_egg",
 		"particle": "adorable_eggs:block/allay_egg"
 	},
+	"render_type": "minecraft:cutout",
 	"elements": [
 		{
 			"from": [1, 0, 1],
