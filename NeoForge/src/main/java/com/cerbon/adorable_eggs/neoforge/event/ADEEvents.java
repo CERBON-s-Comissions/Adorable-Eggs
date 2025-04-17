@@ -2,6 +2,7 @@ package com.cerbon.adorable_eggs.neoforge.event;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADEBlockStateProvider;
+import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADEItemModelProvider;
 import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADELootTableProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -26,5 +27,6 @@ public class ADEEvents {
         generator.addProvider(event.includeServer(), ADELootTableProvider.create(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new ADEBlockStateProvider(packOutput, existingFileHelper));
+        generator.addProvider(event.includeClient(), new ADEItemModelProvider(packOutput, existingFileHelper));
     }
 }
