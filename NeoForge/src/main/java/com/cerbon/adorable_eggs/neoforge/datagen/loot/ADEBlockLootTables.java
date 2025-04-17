@@ -1,11 +1,11 @@
 package com.cerbon.adorable_eggs.neoforge.datagen.loot;
 
 import com.cerbon.adorable_eggs.block.ADEBlocks;
+import com.cerbon.adorable_eggs.block.custom.EggBlock;
 import com.cerbon.cerbons_api.api.registry.RegistryEntry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +19,9 @@ public class ADEBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
-        this.dropOther(ADEBlocks.ALLAY_EGG.get(), Items.ALLAY_SPAWN_EGG);
+        ADEBlocks.BLOCKS.getEntries().stream()
+                .filter(block -> block.get() instanceof EggBlock)
+                .forEach(eggBlock -> this.dropOther(eggBlock.get(), ((EggBlock) eggBlock.get()).eggDrop()));
     }
 
     @Override
