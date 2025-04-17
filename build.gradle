@@ -32,6 +32,15 @@ subprojects {
             parchment "org.parchmentmc.data:parchment-${mapping_version}@zip"
         }
 
+        if (project.name.equalsIgnoreCase("common"))
+            modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+                exclude(group: "net.fabricmc.fabric-api")
+            }
+        else
+            modApi("me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}") {
+                exclude(group: "net.fabricmc.fabric-api")
+            }
+
         compileOnly annotationProcessor("io.github.llamalad7:mixinextras-common:${mixin_extras_version}")
 
         modCompileOnlyApi "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
@@ -62,6 +71,7 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_fabric,
                     fabric_loader_version_range: fabric_loader_version_range,
                     cerbons_api_version_range_fabric: cerbons_api_version_range_fabric,
+                    cloth_config_version_range_fabric: cloth_config_version_range_fabric,
                     source_code_url: source_code_url
             ]
             filePatterns = ["fabric.mod.json"]
@@ -71,7 +81,8 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_forge,
                     forge_version_range: forge_version_range,
                     forge_loader_version_range: forge_loader_version_range,
-                    cerbons_api_version_range_forge: cerbons_api_version_range_forge
+                    cerbons_api_version_range_forge: cerbons_api_version_range_forge,
+                    cloth_config_version_range_forge: cloth_config_version_range_forge
             ]
             filePatterns = ["META-INF/mods.toml", "pack.mcmeta"]
 
@@ -80,7 +91,8 @@ subprojects {
                     minecraft_version_range: minecraft_version_range_forge,
                     neo_version_range: neo_version_range,
                     neo_loader_version_range: neo_loader_version_range,
-                    cerbons_api_version_range_forge: cerbons_api_version_range_forge
+                    cerbons_api_version_range_forge: cerbons_api_version_range_forge,
+                    cloth_config_version_range_forge: cloth_config_version_range_forge
             ]
             filePatterns = ["META-INF/neoforge.mods.toml", "pack.mcmeta"]
         }
@@ -193,6 +205,12 @@ allprojects {
         maven {
             name "Ladysnake Mods"
             url "https://maven.ladysnake.org/releases"
+        }
+        maven {
+            url "https://maven.shedaniel.me/"
+        }
+        maven {
+            url "https://maven.terraformersmc.com/releases/"
         }
         flatDir {
             dir "libs"
