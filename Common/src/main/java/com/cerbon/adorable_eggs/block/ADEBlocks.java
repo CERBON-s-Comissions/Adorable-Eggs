@@ -16,12 +16,12 @@ import net.minecraft.world.level.material.MapColor;
 public class ADEBlocks {
     public static final ResourcefulRegistry<Block> BLOCKS = ResourcefulRegistries.create(BuiltInRegistries.BLOCK, AdorableEggs.MOD_ID);
 
-    public static final RegistryEntry<Block> ALLAY_EGG = register("allay_egg", Items.ALLAY_SPAWN_EGG, MapColor.COLOR_LIGHT_BLUE);
-    public static final RegistryEntry<Block> ARMADILLO_EGG = register("armadillo_egg", Items.ARMADILLO_SPAWN_EGG, MapColor.COLOR_BROWN);
-    public static final RegistryEntry<Block> AXOLOTL_EGG = register("axolotl_egg", Items.AXOLOTL_SPAWN_EGG, MapColor.COLOR_PINK);
-    public static final RegistryEntry<Block> BAT_EGG = register("bat_egg", Items.BAT_SPAWN_EGG, MapColor.COLOR_BLACK);
+    public static final RegistryEntry<EggBlock> ALLAY_EGG = register("allay_egg", Items.ALLAY_SPAWN_EGG, MapColor.COLOR_LIGHT_BLUE);
+    public static final RegistryEntry<EggBlock> ARMADILLO_EGG = register("armadillo_egg", Items.ARMADILLO_SPAWN_EGG, MapColor.COLOR_BROWN);
+    public static final RegistryEntry<EggBlock> AXOLOTL_EGG = register("axolotl_egg", Items.AXOLOTL_SPAWN_EGG, MapColor.COLOR_PINK);
+    public static final RegistryEntry<EggBlock> BAT_EGG = register("bat_egg", Items.BAT_SPAWN_EGG, MapColor.COLOR_BLACK);
 
-    private static RegistryEntry<Block> register(String id, ItemLike eggDrop, MapColor mapColor) {
+    private static RegistryEntry<EggBlock> register(String id, ItemLike eggDrop, MapColor mapColor) {
         return BLOCKS.register(id, () -> new EggBlock(BlockBehaviour.Properties.of().mapColor(mapColor).strength(0.5F).sound(SoundType.METAL).noOcclusion(), eggDrop));
     }
 
