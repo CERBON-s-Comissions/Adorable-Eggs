@@ -1,5 +1,6 @@
 package com.cerbon.adorable_eggs.mixin;
 
+import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -41,13 +42,14 @@ public class SpawnEggItemMixin extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
-        tooltipComponents.add(Component.translatable("item.minecraft.spawn_egg.tooltip"));
+        if (AdorableEggs.config.isPlaceEggsEnabled)
+            tooltipComponents.add(Component.translatable("item.minecraft.spawn_egg.tooltip"));
     }
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Player player = context.getPlayer();
-        if (player == null || !player.isShiftKeyDown() || this.getBlock() == null) return;
+        if (player == null || !player.isShiftKeyDown() || !AdorableEggs.config.isPlaceEggsEnabled || this.getBlock() == null) return;
 
         cir.setReturnValue(this.place(new BlockPlaceContext(context)));
     }

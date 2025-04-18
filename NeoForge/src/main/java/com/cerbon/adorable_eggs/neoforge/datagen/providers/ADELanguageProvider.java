@@ -20,6 +20,9 @@ public class ADELanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         ADEBlocks.BLOCKS.getEntries().forEach(block -> addEggTranslation(block.get()));
         add("item.minecraft.spawn_egg.tooltip", "Press Shift + Right Click to place the egg");
+
+        // Config
+        add("text.autoconfig.adorable_eggs.option.isPlaceEggsEnabled", "Can Place Eggs");
     }
 
     private void addEggTranslation(Block block) {

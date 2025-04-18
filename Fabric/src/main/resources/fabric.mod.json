@@ -22,6 +22,9 @@
     ],
     "client": [
       "com.cerbon.adorable_eggs.fabric.AdorableEggsFabric"
+    ],
+    "modmenu": [
+      "com.cerbon.adorable_eggs.fabric.config.ADEConfigScreen"
     ]
   },
   "mixins": [
