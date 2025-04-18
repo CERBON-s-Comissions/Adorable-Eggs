@@ -1,8 +1,6 @@
 package com.cerbon.adorable_eggs.mixin;
 
-import com.cerbon.adorable_eggs.block.ADEBlocks;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
