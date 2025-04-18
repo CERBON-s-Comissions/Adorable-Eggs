@@ -42,7 +42,7 @@ public class SpawnEggItemMixin extends Item {
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Player player = context.getPlayer();
-        if (player == null || !player.isShiftKeyDown()) return;
+        if (player == null || !player.isShiftKeyDown() || this.getBlock() == null) return;
 
         cir.setReturnValue(this.place(new BlockPlaceContext(context)));
     }
@@ -142,7 +142,7 @@ public class SpawnEggItemMixin extends Item {
 
     @Unique
     protected Block getBlock() {
-        return EggBlock.SPAWN_EGG_TO_BLOCK_EGG.getOrDefault(this, ADEBlocks.ALLAY_EGG.get());
+        return EggBlock.SPAWN_EGG_TO_BLOCK_EGG.get(this);
     }
 
     @Unique
