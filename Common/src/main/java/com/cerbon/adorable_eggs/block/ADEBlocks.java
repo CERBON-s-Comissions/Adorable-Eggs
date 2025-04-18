@@ -22,7 +22,13 @@ public class ADEBlocks {
     public static final RegistryEntry<EggBlock> BAT_EGG = register("bat_egg", Items.BAT_SPAWN_EGG, MapColor.COLOR_BLACK);
 
     private static RegistryEntry<EggBlock> register(String id, ItemLike eggDrop, MapColor mapColor) {
-        return BLOCKS.register(id, () -> new EggBlock(BlockBehaviour.Properties.of().mapColor(mapColor).strength(0.5F).sound(SoundType.METAL).noOcclusion(), eggDrop));
+        return BLOCKS.register(
+                id,
+                () -> new EggBlock(
+                        BlockBehaviour.Properties.of().mapColor(mapColor).strength(0.5F).sound(SoundType.METAL).noOcclusion(),
+                        eggDrop
+                )
+        );
     }
 
     public static void register() {
