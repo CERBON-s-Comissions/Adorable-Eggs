@@ -1,23 +1,83 @@
 {
-	"credit": "Made with Blockbench",
-	"parent": "block/block",
-	"texture_size": [64, 64],
-	"textures": {
-		"0": "salmon_fish",
-		"particle": "salmon_fish"
-	},
-	"elements": [
-		{
-			"from": [1, 0, 1],
-			"to": [15, 19, 15],
-			"faces": {
-				"north": {"uv": [3.5, 3.5, 7, 8.25], "texture": "#0"},
-				"east": {"uv": [0, 3.5, 3.5, 8.25], "texture": "#0"},
-				"south": {"uv": [10.5, 3.5, 14, 8.25], "texture": "#0"},
-				"west": {"uv": [7, 3.5, 10.5, 8.25], "texture": "#0"},
-				"up": {"uv": [7, 3.5, 3.5, 0], "texture": "#0"},
-				"down": {"uv": [10.5, 0, 7, 3.5], "texture": "#0", "cullface": "down"}
-			}
-		}
-	]
+    "credit": "Made with Blockbench",
+    "parent": "block/block",
+    "texture_size": [
+        64,
+        64
+    ],
+    "textures": {
+        "0": "adorable_eggs:block/salmon_egg",
+        "particle": "adorable_eggs:block/salmon_egg"
+    },
+    "elements": [
+        {
+            "from": [
+                1,
+                0,
+                1
+            ],
+            "to": [
+                15,
+                19,
+                15
+            ],
+            "faces": {
+                "north": {
+                    "uv": [
+                        3.5,
+                        3.5,
+                        7,
+                        8.25
+                    ],
+                    "texture": "#0"
+                },
+                "east": {
+                    "uv": [
+                        0,
+                        3.5,
+                        3.5,
+                        8.25
+                    ],
+                    "texture": "#0"
+                },
+                "south": {
+                    "uv": [
+                        10.5,
+                        3.5,
+                        14,
+                        8.25
+                    ],
+                    "texture": "#0"
+                },
+                "west": {
+                    "uv": [
+                        7,
+                        3.5,
+                        10.5,
+                        8.25
+                    ],
+                    "texture": "#0"
+                },
+                "up": {
+                    "uv": [
+                        7,
+                        3.5,
+                        3.5,
+                        0
+                    ],
+                    "texture": "#0"
+                },
+                "down": {
+                    "uv": [
+                        10.5,
+                        0,
+                        7,
+                        3.5
+                    ],
+                    "texture": "#0",
+                    "cullface": "down"
+                }
+            }
+        }
+    ]
 }
