@@ -22,6 +22,6 @@ public class ADEBlockStateProvider extends BlockStateProvider {
     }
 
     private void eggBlock(Block eggBlock) {
-        this.simpleBlock(eggBlock, new ModelFile.ExistingModelFile(this.blockTexture(eggBlock), this.exFileHelper));
+        this.horizontalBlock(eggBlock, new ModelFile.ExistingModelFile(this.blockTexture(eggBlock), this.exFileHelper));
     }
 }
