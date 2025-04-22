@@ -49,9 +49,10 @@ public class SpawnEggItemMixin extends Item {
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"), cancellable = true)
     private void useOn(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
         Player player = context.getPlayer();
-        if (player == null || !player.isShiftKeyDown() || !AdorableEggs.config.isPlaceEggsEnabled || this.getBlock() == null) return;
+        if (player == null || !AdorableEggs.config.isPlaceEggsEnabled || this.getBlock() == null) return;
 
-        cir.setReturnValue(this.place(new BlockPlaceContext(context)));
+        if ((player.isCreative() && player.isShiftKeyDown()) || !player.isCreative())
+            cir.setReturnValue(this.place(new BlockPlaceContext(context)));
     }
 
     @Inject(method = "getColor", at = @At("RETURN"), cancellable = true)
