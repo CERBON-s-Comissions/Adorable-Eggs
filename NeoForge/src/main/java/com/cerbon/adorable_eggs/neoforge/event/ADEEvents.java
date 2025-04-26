@@ -1,10 +1,7 @@
 package com.cerbon.adorable_eggs.neoforge.event;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
-import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADEBlockStateProvider;
-import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADEItemModelProvider;
-import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADELanguageProvider;
-import com.cerbon.adorable_eggs.neoforge.datagen.providers.ADELootTableProvider;
+import com.cerbon.adorable_eggs.neoforge.datagen.providers.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -26,6 +23,7 @@ public class ADEEvents {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         generator.addProvider(event.includeServer(), ADELootTableProvider.create(packOutput, lookupProvider));
+        generator.addProvider(event.includeServer(), new ADELootModifierProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new ADEBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new ADEItemModelProvider(packOutput, existingFileHelper));
