@@ -4,6 +4,7 @@
   "package": "com.cerbon.adorable_eggs.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "CreativeModeTabMixin",
     "SpawnEggItemMixin"
   ],
   "client": [
