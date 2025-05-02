@@ -21,7 +21,7 @@ public class ADELootModifiersFabric {
                 case LootTablesToModify.BREEZE              -> buildLootTable(Items.BREEZE_SPAWN_EGG,          LootTablesToModify.BREEZE,              builder);
                 case LootTablesToModify.CAMEL               -> buildLootTable(Items.CAMEL_SPAWN_EGG,           LootTablesToModify.CAMEL,               builder);
                 case LootTablesToModify.CAT                 -> buildLootTable(Items.CAT_SPAWN_EGG,             LootTablesToModify.CAT,                 builder);
-                //case LootTablesToModify.CREAKING            -> buildLootTable(Items.CREAKING_SPAWN_EGG,        LootTablesToModify.CREAKING,            builder);
+                case LootTablesToModify.CREAKING            -> buildLootTable(Items.CREAKING_SPAWN_EGG,        LootTablesToModify.CREAKING,            builder);
                 case LootTablesToModify.DOLPHIN             -> buildLootTable(Items.DOLPHIN_SPAWN_EGG,         LootTablesToModify.DOLPHIN,             builder);
                 case LootTablesToModify.ELDER_GUARDIAN      -> buildLootTable(Items.ELDER_GUARDIAN_SPAWN_EGG,  LootTablesToModify.ELDER_GUARDIAN,      builder);
                 case LootTablesToModify.ENDERMITE           -> buildLootTable(Items.ENDERMITE_SPAWN_EGG,       LootTablesToModify.ENDERMITE,           builder);

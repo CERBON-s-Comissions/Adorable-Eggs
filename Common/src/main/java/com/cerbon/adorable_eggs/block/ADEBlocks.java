@@ -6,6 +6,9 @@ import com.cerbon.cerbons_api.api.registry.RegistryEntry;
 import com.cerbon.cerbons_api.api.registry.ResourcefulRegistries;
 import com.cerbon.cerbons_api.api.registry.ResourcefulRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -96,14 +99,16 @@ public class ADEBlocks {
     public static final RegistryEntry<EggBlock> ZOMBIE_HORSE_EGG = register("zombie_horse_egg", Items.ZOMBIE_HORSE_SPAWN_EGG, MapColor.COLOR_GREEN);
     public static final RegistryEntry<EggBlock> ZOMBIFIED_PIGLIN_EGG = register("zombified_piglin_egg", Items.ZOMBIFIED_PIGLIN_SPAWN_EGG, MapColor.COLOR_PINK);
     public static final RegistryEntry<EggBlock> ZOMBIE_VILLAGER_EGG = register("zombie_villager_egg", Items.ZOMBIE_VILLAGER_SPAWN_EGG, MapColor.COLOR_GREEN);
-//    public static final RegistryEntry<EggBlock> CREAKING_EGG = register("creaking_egg", Items.CREAKING_SPAWN_EGG, MapColor.COLOR_GRAY);
+    public static final RegistryEntry<EggBlock> CREAKING_EGG = register("creaking_egg", Items.CREAKING_SPAWN_EGG, MapColor.COLOR_GRAY);
 
     private static RegistryEntry<EggBlock> register(String id, ItemLike eggDrop, MapColor mapColor) {
-        return BLOCKS.register(
-                id,
-                () -> new EggBlock(
-                        BlockBehaviour.Properties.of().mapColor(mapColor).strength(0.5F).sound(SoundType.METAL).noOcclusion(),
-                        eggDrop
+        return BLOCKS.register(id, () -> new EggBlock(BlockBehaviour.Properties.of()
+                .mapColor(mapColor)
+                .strength(0.5F)
+                .sound(SoundType.METAL)
+                .noOcclusion()
+                .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdorableEggs.MOD_ID, id))),
+                eggDrop
                 )
         );
     }

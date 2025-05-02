@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BlockItemStateProperties;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -30,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 @Mixin(SpawnEggItem.class)
 public class SpawnEggItemMixin extends Item {
@@ -40,8 +41,8 @@ public class SpawnEggItemMixin extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
 
         if (AdorableEggs.config.isPlaceEggsEnabled) {
             Minecraft client = Minecraft.getInstance();
@@ -49,9 +50,9 @@ public class SpawnEggItemMixin extends Item {
             if (player == null) return;
 
             if (player.isCreative())
-                tooltipComponents.add(Component.translatable("item.minecraft.spawn_egg.creative_tooltip"));
+                tooltipAdder.accept(Component.translatable("item.minecraft.spawn_egg.creative_tooltip"));
             else
-                tooltipComponents.add(Component.translatable("item.minecraft.spawn_egg.survival_tooltip"));
+                tooltipAdder.accept(Component.translatable("item.minecraft.spawn_egg.survival_tooltip"));
         }
     }
 
@@ -62,11 +63,6 @@ public class SpawnEggItemMixin extends Item {
 
         if ((player.isCreative() && player.isShiftKeyDown()) || !player.isCreative())
             cir.setReturnValue(this.place(new BlockPlaceContext(context)));
-    }
-
-    @Inject(method = "getColor", at = @At("RETURN"), cancellable = true)
-    private void getColor(int tintIndex, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(0xFFFFFF);
     }
 
     @Unique
@@ -105,7 +101,7 @@ public class SpawnEggItemMixin extends Item {
                     level.playSound(player, blockPos, this.getPlaceSound(blockState2), SoundSource.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
                     level.gameEvent(GameEvent.BLOCK_PLACE, blockPos, GameEvent.Context.of(player, blockState2));
                     itemStack.consume(1, player);
-                    return InteractionResult.sidedSuccess(level.isClientSide);
+                    return InteractionResult.SUCCESS;
                 }
             }
         }
