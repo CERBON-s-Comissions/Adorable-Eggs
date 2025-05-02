@@ -1,7 +1,5 @@
 package com.cerbon.adorable_eggs.block.custom;
 
-import com.cerbon.adorable_eggs.block.ADEBlocks;
-import com.mojang.serialization.MapCodec;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,7 +21,6 @@ import java.util.Map;
 public class EggBlock extends HorizontalDirectionalBlock {
     private final ItemLike eggDrop;
 
-    public static final MapCodec<EggBlock> CODEC = simpleCodec(properties1 -> new EggBlock(properties1, ADEBlocks.ALLAY_EGG.get()));
     public static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 19.0D, 15.0D);
     public static final Map<ItemLike, EggBlock> SPAWN_EGG_TO_BLOCK_EGG = new Object2ObjectOpenHashMap<>();
 
@@ -35,7 +32,7 @@ public class EggBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
@@ -49,22 +46,17 @@ public class EggBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
     @Override
-    protected @NotNull BlockState rotate(BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    protected @NotNull BlockState mirror(BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 }

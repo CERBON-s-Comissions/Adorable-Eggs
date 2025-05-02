@@ -5,7 +5,7 @@ import com.cerbon.adorable_eggs.block.custom.EggBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -13,14 +13,14 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Mixin(SpawnEggItem.class)
@@ -40,8 +41,8 @@ public class SpawnEggItemMixin extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
-        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
 
         if (AdorableEggs.config.isPlaceEggsEnabled) {
             Minecraft client = Minecraft.getInstance();
@@ -94,7 +95,6 @@ public class SpawnEggItemMixin extends Item {
                     if (blockState2.is(blockState.getBlock())) {
                         blockState2 = this.updateBlockStateFromTag(blockPos, level, itemStack, blockState2);
                         this.updateCustomBlockEntityTag(blockPos, level, player, itemStack, blockState2);
-                        updateBlockEntityComponents(level, blockPos, itemStack);
                         blockState2.getBlock().setPlacedBy(level, blockPos, blockState2, player, itemStack);
                         if (player instanceof ServerPlayer) {
                             CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer)player, blockPos, itemStack);
@@ -102,9 +102,12 @@ public class SpawnEggItemMixin extends Item {
                     }
 
                     SoundType soundType = blockState2.getSoundType();
-                    level.playSound(player, blockPos, this.getPlaceSound(blockState2), SoundSource.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
+                    level.playSound(null, blockPos, this.getPlaceSound(blockState2), SoundSource.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
                     level.gameEvent(GameEvent.BLOCK_PLACE, blockPos, GameEvent.Context.of(player, blockState2));
-                    itemStack.consume(1, player);
+                    if (player == null || !player.getAbilities().instabuild) {
+                        itemStack.shrink(1);
+                    }
+
                     return InteractionResult.sidedSuccess(level.isClientSide);
                 }
             }
@@ -117,28 +120,36 @@ public class SpawnEggItemMixin extends Item {
         return context;
     }
 
-    @Unique
-    private static void updateBlockEntityComponents(Level level, BlockPos poa, ItemStack stack) {
-        BlockEntity blockEntity = level.getBlockEntity(poa);
-        if (blockEntity != null) {
-            blockEntity.applyComponentsFromItemStack(stack);
-            blockEntity.setChanged();
-        }
-    }
+
 
     @Unique
     private BlockState updateBlockStateFromTag(BlockPos pos, Level level, ItemStack stack, BlockState state) {
-        BlockItemStateProperties blockItemStateProperties = stack.getOrDefault(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY);
-        if (blockItemStateProperties.isEmpty()) {
-            return state;
-        } else {
-            BlockState blockState = blockItemStateProperties.apply(state);
-            if (blockState != state) {
-                level.setBlock(pos, blockState, 2);
-            }
+        BlockState blockState = state;
+        CompoundTag compoundTag = stack.getTag();
+        if (compoundTag != null) {
+            CompoundTag compoundTag2 = compoundTag.getCompound("BlockStateTag");
+            StateDefinition<Block, BlockState> stateDefinition = blockState.getBlock().getStateDefinition();
+            Iterator var9 = compoundTag2.getAllKeys().iterator();
 
-            return blockState;
+            while(var9.hasNext()) {
+                String string = (String)var9.next();
+                Property<?> property = stateDefinition.getProperty(string);
+                if (property != null) {
+                    String string2 = compoundTag2.get(string).getAsString();
+                    blockState = updateState(blockState, property, string2);
+                }
+            }
         }
+
+        if (blockState != state) {
+            level.setBlock(pos, blockState, 2);
+        }
+
+        return blockState;
+    }
+
+    private static <T extends Comparable<T>> BlockState updateState(BlockState state, Property<T> property, String valueIdentifier) {
+        return property.getValue(valueIdentifier).map((comparable) -> state.setValue(property, comparable)).orElse(state);
     }
 
     @Unique

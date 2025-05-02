@@ -17,13 +17,13 @@ public class ADEBlocks {
     public static final ResourcefulRegistry<Block> BLOCKS = ResourcefulRegistries.create(BuiltInRegistries.BLOCK, AdorableEggs.MOD_ID);
 
     public static final RegistryEntry<EggBlock> ALLAY_EGG = register("allay_egg", Items.ALLAY_SPAWN_EGG, MapColor.COLOR_LIGHT_BLUE);
-    public static final RegistryEntry<EggBlock> ARMADILLO_EGG = register("armadillo_egg", Items.ARMADILLO_SPAWN_EGG, MapColor.COLOR_BROWN);
+    //public static final RegistryEntry<EggBlock> ARMADILLO_EGG = register("armadillo_egg", Items.ARMADILLO_SPAWN_EGG, MapColor.COLOR_BROWN);
     public static final RegistryEntry<EggBlock> AXOLOTL_EGG = register("axolotl_egg", Items.AXOLOTL_SPAWN_EGG, MapColor.COLOR_PINK);
     public static final RegistryEntry<EggBlock> BAT_EGG = register("bat_egg", Items.BAT_SPAWN_EGG, MapColor.COLOR_BLACK);
     public static final RegistryEntry<EggBlock> POLAR_BEAR_EGG = register("polar_bear_egg", Items.POLAR_BEAR_SPAWN_EGG, MapColor.TERRACOTTA_WHITE);
     public static final RegistryEntry<EggBlock> BEE_EGG = register("bee_egg", Items.BEE_SPAWN_EGG, MapColor.COLOR_YELLOW);
     public static final RegistryEntry<EggBlock> WITHER_SKELETON_EGG = register("wither_skeleton_egg", Items.WITHER_SKELETON_SPAWN_EGG, MapColor.COLOR_YELLOW);
-    public static final RegistryEntry<EggBlock> BREEZE_EGG = register("breeze_egg", Items.BREEZE_SPAWN_EGG, MapColor.COLOR_LIGHT_GRAY);
+    //public static final RegistryEntry<EggBlock> BREEZE_EGG = register("breeze_egg", Items.BREEZE_SPAWN_EGG, MapColor.COLOR_LIGHT_GRAY);
     public static final RegistryEntry<EggBlock> PIGLIN_BRUTE_EGG = register("piglin_brute_egg", Items.PIGLIN_BRUTE_SPAWN_EGG, MapColor.COLOR_PINK);
     public static final RegistryEntry<EggBlock> HUSK_EGG = register("husk_egg", Items.HUSK_SPAWN_EGG, MapColor.COLOR_YELLOW);
     public static final RegistryEntry<EggBlock> CAMEL_EGG = register("camel_egg", Items.CAMEL_SPAWN_EGG, MapColor.COLOR_YELLOW);
@@ -82,7 +82,7 @@ public class ADEBlocks {
     public static final RegistryEntry<EggBlock> SQUID_EGG = register("squid_egg", Items.SQUID_SPAWN_EGG, MapColor.COLOR_BLUE);
     public static final RegistryEntry<EggBlock> STRIDER_EGG = register("strider_egg", Items.STRIDER_SPAWN_EGG, MapColor.COLOR_PURPLE);
     public static final RegistryEntry<EggBlock> EVOKER_EGG = register("evoker_egg", Items.EVOKER_SPAWN_EGG, MapColor.COLOR_GRAY);
-    public static final RegistryEntry<EggBlock> BOGGED_EGG = register("bogged_egg", Items.BOGGED_SPAWN_EGG, MapColor.COLOR_GRAY);
+    //public static final RegistryEntry<EggBlock> BOGGED_EGG = register("bogged_egg", Items.BOGGED_SPAWN_EGG, MapColor.COLOR_GRAY);
     public static final RegistryEntry<EggBlock> TADPOLE_EGG = register("tadpole_egg", Items.TADPOLE_SPAWN_EGG, MapColor.COLOR_BROWN);
     public static final RegistryEntry<EggBlock> TURTLE_EGG = register("turtle_egg", Items.TURTLE_SPAWN_EGG, MapColor.COLOR_GREEN);
     public static final RegistryEntry<EggBlock> WANDERING_TRADER_EGG = register("wandering_trader_egg", Items.WANDERING_TRADER_SPAWN_EGG, MapColor.COLOR_BLUE);

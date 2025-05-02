@@ -18,6 +18,7 @@
 /Forge/run/*
 !/Forge/run/options.txt
 
+/NeoForge
 /NeoForge/.gradle/
 /NeoForge/build/
 /NeoForge/run/*
