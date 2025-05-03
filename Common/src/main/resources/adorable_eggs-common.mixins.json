@@ -8,7 +8,6 @@
     "SpawnEggItemMixin"
   ],
   "client": [
-    "test.TestMixin"
   ],
   "injectors": {
     "defaultRequire": 1
