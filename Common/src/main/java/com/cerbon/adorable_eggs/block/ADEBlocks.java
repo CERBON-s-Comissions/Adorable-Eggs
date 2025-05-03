@@ -2,9 +2,9 @@ package com.cerbon.adorable_eggs.block;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
-import com.cerbon.cerbons_api.api.registry.RegistryEntry;
-import com.cerbon.cerbons_api.api.registry.ResourcefulRegistries;
-import com.cerbon.cerbons_api.api.registry.ResourcefulRegistry;
+import com.cerbon.adorable_eggs.registry.RegistryEntry;
+import com.cerbon.adorable_eggs.registry.ResourcefulRegistries;
+import com.cerbon.adorable_eggs.registry.ResourcefulRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
