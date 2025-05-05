@@ -69,7 +69,8 @@ public class SpawnEggItemMixin extends Item {
 
     @Inject(method = "getColor", at = @At("RETURN"), cancellable = true)
     private void getColor(int tintIndex, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(0xFFFFFF);
+        if (EggBlock.SPAWN_EGG_TO_BLOCK_EGG.get((SpawnEggItem) (Object) this) != null)
+            cir.setReturnValue(0xFFFFFF);
     }
 
     @Unique
