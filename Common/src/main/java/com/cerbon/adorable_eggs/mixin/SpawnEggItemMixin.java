@@ -2,6 +2,8 @@ package com.cerbon.adorable_eggs.mixin;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -41,6 +43,7 @@ public class SpawnEggItemMixin extends Item {
     }
 
     @Override
+    @Environment(EnvType.CLIENT)
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
         super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
 
