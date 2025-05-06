@@ -1,0 +1,11 @@
+{
+  "type": "adorable_eggs:add_item",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/donkey"
+    }
+  ],
+  "item": "minecraft:donkey_spawn_egg",
+  "loot_table": "minecraft:entities/donkey"
+}

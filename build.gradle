@@ -186,10 +186,10 @@ allprojects {
                 includeGroup "curse.maven"
             }
         }
-        maven {
-            name "NeoForge"
-            url "https://maven.neoforged.net/releases/"
-        }
+//        maven {
+//            name "NeoForge"
+//            url "https://maven.neoforged.net/releases/"
+//        }
         maven {
             name "Jared's maven" // JEI
             url "https://maven.blamejared.com/"

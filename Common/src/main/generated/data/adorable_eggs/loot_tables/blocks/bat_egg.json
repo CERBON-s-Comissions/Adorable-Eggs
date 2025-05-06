@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bat_spawn_egg"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "adorable_eggs:blocks/bat_egg"
+}
