@@ -1,0 +1,11 @@
+{
+  "type": "adorable_eggs:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/magma_cube"
+    }
+  ],
+  "item": "minecraft:magma_cube_spawn_egg",
+  "loot_table": "minecraft:entities/magma_cube"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "adorable_eggs:add_item",
+  "conditions": [
+    {
+      "condition": "neoforge:loot_table_id",
+      "loot_table_id": "minecraft:entities/wandering_trader"
+    }
+  ],
+  "item": "minecraft:wandering_trader_spawn_egg",
+  "loot_table": "minecraft:entities/wandering_trader"
+}

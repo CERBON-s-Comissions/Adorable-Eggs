@@ -6,7 +6,7 @@
 /Common/.gradle/
 /Common/build/
 /Common/ru
-/Common/src/main/generated
+/Common/src/main/generated/.cache
 
 /Fabric/.gradle/
 /Fabric/build/
