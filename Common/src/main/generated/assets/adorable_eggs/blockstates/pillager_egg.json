@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "adorable_eggs:block/pillager_egg",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "adorable_eggs:block/pillager_egg"
+    },
+    "facing=south": {
+      "model": "adorable_eggs:block/pillager_egg",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "adorable_eggs:block/pillager_egg",
+      "y": 270
+    }
+  }
+}
