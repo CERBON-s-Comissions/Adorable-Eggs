@@ -19,6 +19,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -57,6 +58,13 @@ public class SpawnEggItemMixin extends Item {
             else
                 tooltipComponents.add(Component.translatable("item.minecraft.spawn_egg.survival_tooltip"));
         }
+    }
+
+    @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;", ordinal = 0), cancellable = true)
+    private void useOnSpawner(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
+        Player player = context.getPlayer();
+        if (player != null && !player.isCreative() && context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.SPAWNER))
+            cir.setReturnValue(InteractionResult.FAIL);
     }
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"), cancellable = true)
