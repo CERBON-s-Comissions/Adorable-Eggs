@@ -2,6 +2,7 @@ package com.cerbon.adorable_eggs.mixin;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
+import com.cerbon.cerbons_api.api.static_utilities.MiscUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -61,9 +62,14 @@ public class SpawnEggItemMixin extends Item {
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;", ordinal = 0), cancellable = true)
     private void useOnSpawner(UseOnContext context, CallbackInfoReturnable<InteractionResult> cir) {
-        Player player = context.getPlayer();
-        if (player != null && !player.isCreative() && context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.SPAWNER))
-            cir.setReturnValue(InteractionResult.FAIL);
+        if (!MiscUtils.isModLoaded("apothic_spawners")) {
+            Player player = context.getPlayer();
+            BlockState blockState = context.getLevel().getBlockState(context.getClickedPos());
+            boolean isSpawner = blockState.is(Blocks.SPAWNER);
+
+            if (player != null && !player.isCreative() && isSpawner)
+                cir.setReturnValue(InteractionResult.FAIL);
+        }
     }
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getCollisionShape(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/phys/shapes/VoxelShape;"), cancellable = true)
