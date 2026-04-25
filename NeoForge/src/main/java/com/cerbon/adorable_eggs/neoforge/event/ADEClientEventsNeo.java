@@ -2,7 +2,7 @@ package com.cerbon.adorable_eggs.neoforge.event;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.config.ADEConfig;
-import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.AutoConfigClient;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModLoadingContext;
@@ -15,6 +15,6 @@ public class ADEClientEventsNeo {
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
-        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (modContainer, screen) -> AutoConfig.getConfigScreen(ADEConfig.class, screen).get());
+        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> (mc, parent) -> AutoConfigClient.getConfigScreen(ADEConfig.class, parent).get());
     }
 }

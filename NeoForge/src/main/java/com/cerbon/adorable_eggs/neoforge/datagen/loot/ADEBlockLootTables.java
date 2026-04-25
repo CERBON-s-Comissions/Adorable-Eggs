@@ -2,7 +2,7 @@ package com.cerbon.adorable_eggs.neoforge.datagen.loot;
 
 import com.cerbon.adorable_eggs.block.ADEBlocks;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
-import com.cerbon.cerbons_api.api.registry.RegistryEntry;
+import com.cerbon.adorable_eggs.registry.RegistryEntry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;

@@ -2,13 +2,13 @@ package com.cerbon.adorable_eggs.block;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
-import com.cerbon.cerbons_api.api.registry.RegistryEntry;
-import com.cerbon.cerbons_api.api.registry.ResourcefulRegistries;
-import com.cerbon.cerbons_api.api.registry.ResourcefulRegistry;
+import com.cerbon.adorable_eggs.registry.RegistryEntry;
+import com.cerbon.adorable_eggs.registry.ResourcefulRegistries;
+import com.cerbon.adorable_eggs.registry.ResourcefulRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -107,7 +107,7 @@ public class ADEBlocks {
                 .strength(0.5F)
                 .sound(SoundType.METAL)
                 .noOcclusion()
-                .setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(AdorableEggs.MOD_ID, id))),
+                .setId(ResourceKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(AdorableEggs.MOD_ID, id))),
                 eggDrop
                 )
         );

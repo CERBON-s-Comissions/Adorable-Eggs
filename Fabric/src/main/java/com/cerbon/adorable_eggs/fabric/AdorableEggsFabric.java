@@ -1,12 +1,9 @@
 package com.cerbon.adorable_eggs.fabric;
 
 import com.cerbon.adorable_eggs.AdorableEggs;
-import com.cerbon.adorable_eggs.block.ADEBlocks;
 import com.cerbon.adorable_eggs.fabric.loot.ADELootModifiersFabric;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 
 public class AdorableEggsFabric implements ModInitializer, ClientModInitializer {
 
@@ -19,6 +16,6 @@ public class AdorableEggsFabric implements ModInitializer, ClientModInitializer 
 
     @Override
     public void onInitializeClient() {
-        ADEBlocks.BLOCKS.getEntries().forEach(block -> BlockRenderLayerMap.putBlock(block.get(), ChunkSectionLayer.CUTOUT));
+        //ADEBlocks.BLOCKS.getEntries().forEach(block -> BlockRenderLayerMap.putBlock(block.get(), ChunkSectionLayer.CUTOUT));
     }
 }

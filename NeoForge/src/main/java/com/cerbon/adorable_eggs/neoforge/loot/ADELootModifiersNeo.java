@@ -25,8 +25,8 @@ public class ADELootModifiersNeo extends LootModifier {
     private final Item item;
     private final String lootTable;
 
-    public ADELootModifiersNeo(LootItemCondition[] conditionsIn, Item item, String lootTable) {
-        super(conditionsIn);
+    public ADELootModifiersNeo(LootItemCondition[] conditionsIn, int priority, Item item, String lootTable) {
+        super(conditionsIn, priority);
         this.item = item;
         this.lootTable = lootTable;
     }

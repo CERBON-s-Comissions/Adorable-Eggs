@@ -15,7 +15,7 @@ public class ADELootModifiersFabric {
 
     public static void modifyLootTables() {
         LootTableEvents.MODIFY.register((resourceKey, builder, lootTableSource, provider) -> {
-            switch (resourceKey.location().toString()) {
+            switch (resourceKey.identifier().toString()) {
                 case LootTablesToModify.ALLAY               -> buildLootTable(Items.ALLAY_SPAWN_EGG,           LootTablesToModify.ALLAY,               builder);
                 case LootTablesToModify.ARMADILLO           -> buildLootTable(Items.ARMADILLO_SPAWN_EGG,       LootTablesToModify.ARMADILLO,           builder);
                 case LootTablesToModify.BREEZE              -> buildLootTable(Items.BREEZE_SPAWN_EGG,          LootTablesToModify.BREEZE,              builder);
@@ -108,9 +108,9 @@ public class ADELootModifiersFabric {
 
         LootPool.Builder pool = LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .conditionally(LootItemRandomChanceCondition.randomChance(dropChance).build());
+                .when(LootItemRandomChanceCondition.randomChance(dropChance).build());
 
-        pool.with(LootItem.lootTableItem(eggDrop).setWeight(1).build())
+        pool.add(LootItem.lootTableItem(eggDrop).setWeight(1).build())
                 .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)));
 
         tableBuilder.pool(pool.build());

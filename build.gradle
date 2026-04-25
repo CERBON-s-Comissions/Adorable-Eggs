@@ -2,8 +2,8 @@ import net.darkhax.curseforgegradle.TaskPublishCurseForge
 
 plugins {
     id "architectury-plugin" version "${architecture_plugin_version}"
-    id "dev.architectury.loom" version "${loom_version}" apply false
-    id "com.github.johnrengelman.shadow" version "${shadow_plugin_version}"
+    id "dev.architectury.loom-no-remap" version "${loom_version}" apply false
+    id "com.gradleup.shadow" version "${shadow_plugin_version}"
     id 'net.darkhax.curseforgegradle' version "${curseforge_gradle_version}"
     id "com.modrinth.minotaur" version "${minotaur_version}"
 }
@@ -13,31 +13,22 @@ architectury {
 }
 
 subprojects {
-    apply plugin: "dev.architectury.loom"
-    apply plugin: "com.github.johnrengelman.shadow"
+    apply plugin: "dev.architectury.loom-no-remap"
+    apply plugin: "com.gradleup.shadow"
 
     base {
-        archivesBaseName = archives_base_name + "-${projectDir.canonicalFile.name}-${minecraft_version}"
-    }
-
-    loom {
-        silentMojangMappingsLicense()
+        archivesName = archives_base_name + "-${projectDir.canonicalFile.name}-${minecraft_version}"
     }
 
     dependencies {
         minecraft "com.mojang:minecraft:${minecraft_version}"
 
-        mappings loom.layered() {
-            officialMojangMappings()
-            parchment "org.parchmentmc.data:parchment-${mapping_version}@zip"
-        }
-
         if (project.name.equalsIgnoreCase("common"))
-            modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
+            api("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
                 exclude(group: "net.fabricmc.fabric-api")
             }
         else if (!project.name.equalsIgnoreCase("forge"))
-            modApi("me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}") {
+            api("me.shedaniel.cloth:cloth-config-${project.name}:${cloth_config_version}") {
                 exclude(group: "net.fabricmc.fabric-api")
             }
 
@@ -121,7 +112,7 @@ subprojects {
 
         apiToken = System.getenv("CURSEFORGE_TOKEN")
 
-        def mainFile = upload(curseforge_project_id, remapJar)
+        def mainFile = upload(curseforge_project_id, jar)
         mainFile.addModLoader(project.name)
         mainFile.addGameVersion(game_versions.replaceAll(" ", "").split(","))
 
@@ -143,12 +134,12 @@ subprojects {
         token = System.getenv("MODRINTH_TOKEN")
 
         projectId = modrinth_project_id
-        uploadFile = remapJar
+        uploadFile = jar
         loaders = [project.name]
 
         gameVersions = game_versions.replaceAll(" ", "").split(",") as Iterable<? extends String>
 
-        versionName = project.base.archivesBaseName + "-" + mod_version
+        versionName = project.base.archivesName.get() + "-" + mod_version
         versionNumber = mod_version
         versionType = release_type
 

@@ -5,7 +5,7 @@ import com.cerbon.adorable_eggs.loot.LootTablesToModify;
 import com.cerbon.adorable_eggs.neoforge.loot.ADELootModifiersNeo;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -108,8 +108,9 @@ public class ADELootModifierProvider extends GlobalLootModifierProvider {
     private ADELootModifiersNeo buildLootTable(Item eggDrop, String lootTableName) {
         return new ADELootModifiersNeo(
                 new LootItemCondition[] {
-                        LootTableIdCondition.builder(ResourceLocation.tryParse(lootTableName)).build()
+                        LootTableIdCondition.builder(Identifier.tryParse(lootTableName)).build()
                 },
+                1,
                 eggDrop,
                 lootTableName
         );
