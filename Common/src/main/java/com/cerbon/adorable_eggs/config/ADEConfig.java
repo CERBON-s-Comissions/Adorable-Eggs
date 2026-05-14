@@ -90,4 +90,8 @@ public class ADEConfig implements ConfigData {
     public float zombieEggDropChance          = 1f/500f;
     public float skeletonEggDropChance        = 1f/500f;
     public float sheepEggDropChance           = 1f/500f;
+    public float camelHuskEggDropChance       = 1f/25f;
+    public float nautilusEggDropChance        = 1f/25f;
+    public float zombieNautilusEggDropChance  = 1f/25f;
+    public float parchedEggDropChance         = 1f/50f;
 }

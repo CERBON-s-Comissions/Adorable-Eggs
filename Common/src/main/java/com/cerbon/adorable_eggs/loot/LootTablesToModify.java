@@ -87,7 +87,11 @@ public class LootTablesToModify {
     public static final String ZOMBIE              = "minecraft:entities/zombie";
     public static final String SKELETON            = "minecraft:entities/skeleton";
     public static final String SHEEP               = "minecraft:entities/sheep";
-    
+    public static final String CAMEL_HUSK          = "minecraft:entities/camel_husk";
+    public static final String NAUTILUS            = "minecraft:entities/nautilus";
+    public static final String ZOMBIE_NAUTILUS     = "minecraft:entities/zombie_nautilus";
+    public static final String PARCHED             = "minecraft:entities/parched";
+
     public static Map<String, Float> DROP_CHANCE_MAP = ImmutableMap.<String, Float>builder()
             .put(ALLAY,             AdorableEggs.config.allayEggDropChance)
             .put(ARMADILLO,         AdorableEggs.config.armadilloEggDropChance)
@@ -170,5 +174,9 @@ public class LootTablesToModify {
             .put(ZOMBIE,            AdorableEggs.config.zombieEggDropChance)
             .put(SKELETON,          AdorableEggs.config.skeletonEggDropChance)
             .put(SHEEP,             AdorableEggs.config.sheepEggDropChance)
+            .put(CAMEL_HUSK,        AdorableEggs.config.camelHuskEggDropChance)
+            .put(NAUTILUS,          AdorableEggs.config.nautilusEggDropChance)
+            .put(ZOMBIE_NAUTILUS,   AdorableEggs.config.zombieNautilusEggDropChance)
+            .put(PARCHED,           AdorableEggs.config.parchedEggDropChance)
             .build();
 }

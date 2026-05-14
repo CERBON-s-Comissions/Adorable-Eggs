@@ -97,6 +97,10 @@ public class ADELootModifiersFabric {
                 case LootTablesToModify.ZOMBIE              -> buildLootTable(Items.ZOMBIE_SPAWN_EGG,          LootTablesToModify.ZOMBIE,              builder);
                 case LootTablesToModify.SKELETON            -> buildLootTable(Items.SKELETON_SPAWN_EGG,        LootTablesToModify.SKELETON,            builder);
                 case LootTablesToModify.SHEEP               -> buildLootTable(Items.SHEEP_SPAWN_EGG,           LootTablesToModify.SHEEP,               builder);
+                case LootTablesToModify.CAMEL_HUSK          -> buildLootTable(Items.CAMEL_HUSK_SPAWN_EGG,      LootTablesToModify.CAMEL_HUSK,          builder);
+                case LootTablesToModify.NAUTILUS            -> buildLootTable(Items.NAUTILUS_SPAWN_EGG,        LootTablesToModify.NAUTILUS,            builder);
+                case LootTablesToModify.ZOMBIE_NAUTILUS     -> buildLootTable(Items.ZOMBIE_NAUTILUS_SPAWN_EGG, LootTablesToModify.ZOMBIE_NAUTILUS,     builder);
+                case LootTablesToModify.PARCHED             -> buildLootTable(Items.PARCHED_SPAWN_EGG,         LootTablesToModify.PARCHED,             builder);
             }
         });
     }

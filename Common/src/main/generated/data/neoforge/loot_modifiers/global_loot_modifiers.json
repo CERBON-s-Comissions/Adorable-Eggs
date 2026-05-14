@@ -80,7 +80,11 @@
     "adorable_eggs:sniffer_egg_drop",
     "adorable_eggs:snow_golem_egg_drop",
     "adorable_eggs:strider_egg_drop",
-    "adorable_eggs:creaking_egg_drop"
+    "adorable_eggs:creaking_egg_drop",
+    "adorable_eggs:camel_husk_egg_drop",
+    "adorable_eggs:nautilus_egg_drop",
+    "adorable_eggs:zombie_nautilus_egg_drop",
+    "adorable_eggs:parched_egg_drop"
   ],
   "replace": false
 }

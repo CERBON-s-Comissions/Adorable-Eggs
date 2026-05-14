@@ -100,6 +100,10 @@ public class ADEBlocks {
     public static final RegistryEntry<EggBlock> ZOMBIFIED_PIGLIN_EGG = register("zombified_piglin_egg", Items.ZOMBIFIED_PIGLIN_SPAWN_EGG, MapColor.COLOR_PINK);
     public static final RegistryEntry<EggBlock> ZOMBIE_VILLAGER_EGG = register("zombie_villager_egg", Items.ZOMBIE_VILLAGER_SPAWN_EGG, MapColor.COLOR_GREEN);
     public static final RegistryEntry<EggBlock> CREAKING_EGG = register("creaking_egg", Items.CREAKING_SPAWN_EGG, MapColor.COLOR_GRAY);
+    public static final RegistryEntry<EggBlock> CAMEL_HUSK_EGG = register("camel_husk_egg", Items.CAMEL_HUSK_SPAWN_EGG, MapColor.COLOR_GRAY);
+    public static final RegistryEntry<EggBlock> NAUTILUS_EGG = register("nautilus_egg", Items.NAUTILUS_SPAWN_EGG, MapColor.COLOR_ORANGE);
+    public static final RegistryEntry<EggBlock> ZOMBIE_NAUTILUS_EGG = register("zombie_nautilus_egg", Items.ZOMBIE_NAUTILUS_SPAWN_EGG, MapColor.TERRACOTTA_WHITE);
+    public static final RegistryEntry<EggBlock> PARCHED_EGG = register("parched_egg", Items.PARCHED_SPAWN_EGG, MapColor.COLOR_GRAY);
 
     private static RegistryEntry<EggBlock> register(String id, ItemLike eggDrop, MapColor mapColor) {
         return BLOCKS.register(id, () -> new EggBlock(BlockBehaviour.Properties.of()
