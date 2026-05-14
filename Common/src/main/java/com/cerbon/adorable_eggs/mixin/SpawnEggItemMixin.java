@@ -3,21 +3,19 @@ package com.cerbon.adorable_eggs.mixin;
 import com.cerbon.adorable_eggs.AdorableEggs;
 import com.cerbon.adorable_eggs.block.custom.EggBlock;
 import com.cerbon.adorable_eggs.platform.Services;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.BlockItemStateProperties;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -35,30 +33,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.function.Consumer;
-
 @Mixin(SpawnEggItem.class)
 public class SpawnEggItemMixin extends Item {
 
     public SpawnEggItemMixin(Properties properties) {
         super(properties);
-    }
-
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay tooltipDisplay, Consumer<Component> tooltipAdder, TooltipFlag flag) {
-        super.appendHoverText(stack, context, tooltipDisplay, tooltipAdder, flag);
-
-        if (AdorableEggs.config.isPlaceEggsEnabled) {
-            Minecraft client = Minecraft.getInstance();
-            Player player = client.player;
-            if (player == null) return;
-
-            if (player.isCreative())
-                tooltipAdder.accept(Component.translatable("item.minecraft.spawn_egg.creative_tooltip"));
-            else
-                tooltipAdder.accept(Component.translatable("item.minecraft.spawn_egg.survival_tooltip"));
-        }
     }
 
     @Inject(method = "useOn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/Level;getBlockEntity(Lnet/minecraft/core/BlockPos;)Lnet/minecraft/world/level/block/entity/BlockEntity;", ordinal = 0), cancellable = true)
